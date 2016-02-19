@@ -1,0 +1,13 @@
+{
+    "name": "root/certif",
+    "authors": [
+        {
+            "name": "semen emelianov",
+            "email": "semen.emelianov@simbirsoft.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"Cert\\": "src/"}
+    }
+}
