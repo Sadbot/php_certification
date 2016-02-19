@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <system>
+    <route match="index" controller="index" action="index"/>
+    <route match="forbidden" controller="error" action="403"/>
+    <route match="not_found" controller="error" action="404"/>
+  </system>
+  <routes>
+    <route match="auth" controller="user" action="auth"/>
+
+    <route match="register" controller="user" action="register"/>
+
+    <route match="exit" controller="user" action="exit"/>
+
+    <route match="secret" controller="error" action="404">
+      <route match="love" controller="secret" action="love"/>
+    </route>
+
+    <route controller="partition" action="list" match="part-{partition_url}-{date|num}">
+      <route ontroller="partition" action="list" match="page-{page}"/>
+      <route controller="post" action="post" match="{post_url}"/>
+    </route>
+
+    <route controller="partition" action="list" match="part-{partition_url|str}">
+      <route controller="partition" action="list" match="page-{page|num}"/>
+      <route controller="post" action="post" match="{post_url}"/>
+    </route>
+
+    <route match="page" controller="page" action="list">
+      <route controller="page" action="list" match="page-{page}"/>
+      <route controller="page" action="page" match="{id}"/>
+    </route>
+
+    <route match="user" controller="user" action="list">
+
+      <route controller="user" action="user" match="id{user_id|num}">
+        <route match="comments" controller="user" action="comments"/>
+        <route match="wall" controller="user" action="wall"/>
+      </route>
+
+      <route controller="user" action="user" match="{login}">
+        <route match="comments" controller="user" action="comments"/>
+        <route match="wall" controller="user" action="wall"/>
+      </route>
+
+    </route>
+  </routes>
+</root>

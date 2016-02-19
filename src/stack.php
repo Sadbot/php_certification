@@ -1,50 +1,50 @@
 <?php
+
 namespace Cert\Stack;
 
-class Stack {
-	private $data = [];
+class Stack
+{
+    private $data = [];
 
-	public function enqueue()
-	{
-		$values = func_get_args();
+    public function enqueue()
+    {
+        $values = func_get_args();
 
-		foreach ($values as $element)
-		{
-			$this->data[] = $element;
-		}
-	}
+        foreach ($values as $element) {
+            $this->data[] = $element;
+        }
+    }
 
-	public function dequeue()
-	{
-		if(count($this->data) > 0)
-		{
-			return array_shift($this->data);
-		}
-		return null;
-	}
+    public function dequeue()
+    {
+        if (count($this->data) > 0) {
+            return array_shift($this->data);
+        }
+
+        return;
+    }
 }
 
-class Queue {
+class Queue
+{
+    private $data = [];
 
-	private $data = [];
+    public function enqueue()
+    {
+        $values = func_get_args();
+        foreach ($values as $element) {
+            array_unshift($this->data, $element);
+        }
+    }
 
-	public function enqueue()
-	{
-		$values = func_get_args();
-		foreach ($values as $element)
-		{
-			array_unshift($this->data, $element);
-		}
-	}
+    public function dequeue()
+    {
+        if (count($this->data) > 0) {
+            return array_shift($this->data);
+        }
 
-	public function dequeue()
-	{
-		if(count($this->data) > 0)
-		{
-			return array_shift($this->data);
-		}
-		return null;
-	}
+        return;
+    }
 }
 
 $a = new Stack();
