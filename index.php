@@ -2575,52 +2575,6 @@
         <span class="c0">Примеры использования</span>
       </li>
     </ul>
-    <p class="c3 c19">
-      <span></span>
-    </p>
-    <p class="c3 c19">
-      <span></span>
-    </p>
-    <p class="c3 c19">
-      <span></span>
-    </p>
-    <p class="c3">
-      <span>Где расположен php.ini</span>
-    </p>
-    <p class="c3 c33">
-      <span>$ locate php.ini</span>
-    </p>
-    <p class="c3">
-      <span>последовательность поиска</span>
-    </p>
-    <p class="c3 c19">
-      <span class="c18"></span>
-    </p>
-    <p class="c3 c19">
-      <span class="c18"></span>
-    </p>
-    <p class="c3">
-      <span class="c18">Garbage collector</span>
-    </p>
-    <p class="c3">
-      <span>Переменная PHP хранится в контейнере, называемом "zval".
-      </span>
-    </p>
-    <p class="c3 c23">
-      <span class="c22"><?php</span>
-    </p>
-    <p class="c3 c23">
-      <span class="c22">$a
-      </span>
-      <span class="c8">=
-      </span>
-      <span class="c31">"new string"</span>
-      <span class="c8">;</span>
-    </p>
-    <p class="c3 c23">
-      <span class="c22">?>
-        </span>
-      </p>
       <p class="c3">
         <span>В данном примере создается новый символ a в текущей области видимости и новый контейнер переменной с типом
         </span>
@@ -2765,29 +2719,8 @@
         </li>
       </ul>
       <p class="c3">
-        <span class="c29">Переменные функции не будут работать с такими языковыми конструкциями как
-        </span>
-        <span class="c29">echo</span>
-        <span class="c29">,
-        </span>
-        <span class="c29">print</span>
-        <span class="c29">,
-        </span>
-        <span class="c29">unset()</span>
-        <span class="c29">,
-        </span>
-        <span class="c29">isset()</span>
-        <span class="c29">,
-        </span>
-        <span class="c29">empty()</span>
-        <span class="c29">,
-        </span>
-        <span class="c29">include</span>
-        <span class="c29">,
-        </span>
-        <span class="c29">require</span>
         <span class="c29">
-          и другими подобными им операторами.</span>
+Переменные функции не будут работать с такими языковыми конструкциями как echo , print , unset() , isset() , empty() , include , require и другими подобными им операторами.</span>
       </p>
       <h3 class="c7 c3">
         <a id="h.l5a0w0wxbb0v"></a>
@@ -2855,7 +2788,6 @@
       </ul>
       <p class="c15 c3">
         <span class="c0 c42">mixed</span>
-        <span class="c1"></span>
         <span class="c4">str_word_count</span>
         <span class="c1">
           (
@@ -2867,7 +2799,6 @@
           [,
         </span>
         <span class="c5">int</span>
-        <span class="c1"></span>
         <span class="c4">$format</span>
         <span class="c13">
           = 0</span>
@@ -3641,7 +3572,7 @@
           <a href="src/stack.php">Задача: реализовать класс очереди и стэка</a>
         </span>
       </p>
-      <?=highlight_file('src/stack.php', true);?>
+      <?=highlight_file('src/stack.php',true);?>
       <hr style="page-break-before:always;display:none;">
       <p class="c3 c19">
         <span></span>
@@ -3706,7 +3637,7 @@
         <span class="c0"><a href="src/csv.php">Задача: реализовать скрипт чтения и записи CSV файла</a></span>
       </p>
       <pre>
-        <?=highlight_file('src/csv.php', true);?>
+        <?=highlight_file('src/csv.php',true);?>
       </pre>
       <h3 class="c7 c3">
         <a id="h.u8khzgbjjhya"></a>
@@ -3946,6 +3877,6 @@
       <p class="c3 c17">
         <span class="c0"><a href="src/stream.php">Задача: реализовать скрипт работающий с выбранным потоком</a></span>
       </p>
-      <?=highlight_file('src/stream.php', true);?>
+      <?=highlight_file('src/stream.php',true);?>
     </body>
   </html>

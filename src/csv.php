@@ -9,6 +9,7 @@ class CSV
 
     /**
      * Constructor Method.
+     *
      * @param string $filename local or global file path
      */
     public function __construct($filename)
@@ -20,6 +21,7 @@ class CSV
     }
     /**
      * Method for checking CSV files.
+     *
      * @param string $parameter for read\write mode.
      */
     private function isOpen($parameter = 'r')
@@ -33,6 +35,7 @@ class CSV
     }
     /**
      * Method for reading CSV files.
+     *
      * @param string $delimiter delimiters for csv file.
      */
     public function readCSV($delimiter = ',')
@@ -41,9 +44,7 @@ class CSV
             throw new \Exception('Error in open file on read', 2);
         }
         while (false !== ($data = \fgetcsv($this->_file, 1000, $delimiter))) {
-            foreach ($data as $value) {
-                $this->debug($data);
-            }
+          $this->debugInfo($data);
         }
         \fclose($this->_file);
     }
@@ -55,11 +56,10 @@ class CSV
      */
     private function putDataRecursive($array)
     {
-        foreach ($text as $value) {
+        \fputcsv($this->_file, $array);
+        foreach ($array as $value) {
             if (is_array($value)) {
                 $this->putDataRecursive($value);
-            } else {
-                \fputcsv($this->_file, $value);
             }
         }
     }
@@ -80,26 +80,26 @@ class CSV
     /**
      * Method for output csv data on stdout.
      */
-    public function debug(array $data)
+    public function debugInfo(array $data)
     {
-        // \print_r($data);
+        \var_dump($data);
     }
 }
 
-$filename = 'test.csv';
+$filename = __DIR__.'/test.csv';
 
 try {
     $csv = new CSV($filename);
     $csv->writeCSV([
-      '2 - High',
-      'Test1',
-      'Proposed',
-      'asdg',
-      'rtuetu',
-      'asdg',
-      'fdgmgfh',
-      'rtusrtu',
-      'nxfr',
+      'Priority' => '2 - High',
+      'Name' => 'Test1',
+      'Status' => 'Proposed',
+      'Planned Time' => 'asdg',
+      'Current Time' => 'rtuetu',
+      '% Complete' => 'asdg',
+      'Due date' => 'fdgmgfh',
+      'Owner' => 'rtusrtu',
+      'Creator' => 'nxfr',
     ]);
     $csv->readCSV();
 } catch (\Exception $e) {

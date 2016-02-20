@@ -23,3 +23,4 @@ Priority,Name,Status,Planned Time,Current Time,% Complete,Due date,Owner,Creator
 1 - Highest,"QA ФЛЭТ:Bug: ""Подтвердить оплату""- ошибка",Completed,0.5,0.2,100%,,"Tarasova, Marina","Tarasova, Marina"
 1 - Highest,"ФЛЭТ: Bug: Задача на подтверждение оплаты - не сохраняется, не завершается",Completed,0.0,2.0,100%,,"Skudnov, Dmitry","Tarasova, Marina"
 1 - Highest,"QA ФЛЭТ: Bug: Задача на подтверждение оплаты - не сохраняется, не завершается",Completed,0.5,0.4,100%,,"Tarasova, Marina","Tarasova, Marina"
+"2 - High",Test1,Proposed,asdg,rtuetu,asdg,fdgmgfh,rtusrtu,nxfr
