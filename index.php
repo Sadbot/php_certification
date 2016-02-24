@@ -2575,16 +2575,6 @@
         <span class="c0">Примеры использования</span>
       </li>
     </ul>
-      <p class="c3">
-        <span>В данном примере создается новый символ a в текущей области видимости и новый контейнер переменной с типом
-        </span>
-        <span>string</span>
-        <span>
-          и значением new string. Бит "is_ref" по умолчанию задается равным FALSE, т.к. не создано ни одной пользовательской ссылки. Значение же "refcount" задается равным 1, т.к. только одно имя переменной указывает на данный контейнер. Отметим, что если "refcount" равен1, то "is_ref" будет всегда равен FALSE. Если у вас установлен
-        </span>
-        <span>» Xdebug</span>
-        <span>, то вы можете вывести эту информацию, вызвав функцию xdebug_debug_zval().</span>
-      </p>
       <p class="c3 c19">
         <span></span>
       </p>
@@ -2619,9 +2609,6 @@
           <span class="c0">Значение по-умолчанию для аргументов (передача по ссылке)</span>
         </li>
       </ul>
-      <p class="c3 c14">
-        <span class="c44 c29">Только константные значения (+константы), но не переменные\ массивы\ классы\ выражения.</span>
-      </p>
       <ul class="c9 lst-kix_7fbw8bcqftjw-0">
         <li class="c2">
           <span class="c0">Вызов через переменную (variable function)</span>
@@ -2636,10 +2623,6 @@
           <span class="c0">Переопределение функции, проверка существования функции</span>
         </li>
       </ul>
-      <p class="c3 c14">
-        <span class="c44 c29">В своём namespace можно переопределять дефолтные функции.
-        </span>
-      </p>
       <ul class="c9 lst-kix_7fbw8bcqftjw-0">
         <li class="c2">
           <span class="c0">В каком пространстве имен находятся функции и классы</span>
@@ -2653,9 +2636,6 @@
           <span class="c0">Регистрозависимость названий функций</span>
         </li>
       </ul>
-      <p class="c3 c14">
-        <span class="c0">объявление и вызов функций регистроНЕзависимый.</span>
-      </p>
       <ul class="c9 lst-kix_7fbw8bcqftjw-0">
         <li class="c2">
           <span class="c0">Обращение к глобальным переменным из функции</span>
@@ -2670,9 +2650,6 @@
           <span class="c0">Получить список переданных в функцию аргументов</span>
         </li>
       </ul>
-      <p class="c3 c14">
-        <span class="c0">func_get_args()</span>
-      </p>
       <h3 class="c7 c3">
         <a id="h.vpbnz2vpnz6z"></a>
         <span class="c10">Return</span>
@@ -3572,7 +3549,7 @@
           <a href="src/stack.php">Задача: реализовать класс очереди и стэка</a>
         </span>
       </p>
-      <?=highlight_file('src/stack.php',true);?>
+      <?=highlight_file('src/stack.php', true);?>
       <hr style="page-break-before:always;display:none;">
       <p class="c3 c19">
         <span></span>
@@ -3637,7 +3614,7 @@
         <span class="c0"><a href="src/csv.php">Задача: реализовать скрипт чтения и записи CSV файла</a></span>
       </p>
       <pre>
-        <?=highlight_file('src/csv.php',true);?>
+        <?=highlight_file('src/csv.php', true);?>
       </pre>
       <h3 class="c7 c3">
         <a id="h.u8khzgbjjhya"></a>
@@ -3851,8 +3828,25 @@
         </li>
       </ul>
       <p class="c3 c17">
-        <span class="c0">Задача: реализовать конкурирующие за файл скрипты</span>
+        <span class="c0"><a href="src/locks.php">Задача: реализовать конкурирующие за файл скрипты</a></span>
       </p>
+
+    <?=highlight_file('src/locks.php', true);?>
+
+    <pre>
+        10254: I'm trying to access the file
+        10253: I'm trying to access the file
+        10254: I'm writing to file
+        10255: I'm trying to access the file
+        10254: I wrote to file
+        10253: I'm writing to file
+        10253: I wrote to file
+        10255: I'm writing to file
+        10255: I wrote to file
+        Job 2, “php locks.php & ” has ended
+        Job 1, “php locks.php & ” has ended
+    </pre>
+
       <h3 class="c7 c3">
         <a id="h.oybg6egubjzc"></a>
         <span class="c10">Streams</span>
@@ -3877,6 +3871,6 @@
       <p class="c3 c17">
         <span class="c0"><a href="src/stream.php">Задача: реализовать скрипт работающий с выбранным потоком</a></span>
       </p>
-      <?=highlight_file('src/stream.php',true);?>
+      <?=highlight_file('src/stream.php', true);?>
     </body>
   </html>

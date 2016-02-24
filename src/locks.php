@@ -3,16 +3,24 @@ namespace Cert;
 
 const fname = 'test.txt';
 
-function addTextToNotLocked()
-{
-    if (file_exists(fname)) {
-        $file = fopen(fname, 'w+');
-        while ($file && flock($file, LOCK_EX)) {
-            $text = file_get_contents(fname);
-            echo 'write function 1 to txt file ', $text;
-            flock($file, LOCK_UN);
-        }
-    }
-}
+$pid = getmypid();
+$temp = fopen(fname, "c+");
 
-addTextToNotLocked();
+if ($temp) {
+    echo "{$pid}: I'm trying to access the file\n";
+    while (!flock($temp, LOCK_EX)) {}
+
+    echo "{$pid}: I'm writing to file\n";
+    do {
+
+        $str = (int) fgets($temp);
+    } while (!feof($temp));
+
+//    sleep(2);
+
+    echo "{$pid}: I wrote to file\n";
+    fprintf($temp, "\n%d", $str+1);
+
+    flock($temp, LOCK_UN);
+    fclose($temp);
+}

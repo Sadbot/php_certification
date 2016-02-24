@@ -9,7 +9,7 @@ class CSV
 
     /**
      * Constructor Method.
-     *
+     * @throws \Exception
      * @param string $filename local or global file path
      */
     public function __construct($filename)
@@ -21,8 +21,8 @@ class CSV
     }
     /**
      * Method for checking CSV files.
-     *
      * @param string $parameter for read\write mode.
+     * @return boolean
      */
     private function isOpen($parameter = 'r')
     {
@@ -35,7 +35,7 @@ class CSV
     }
     /**
      * Method for reading CSV files.
-     *
+     * @throws \Exception
      * @param string $delimiter delimiters for csv file.
      */
     public function readCSV($delimiter = ',')
@@ -51,12 +51,12 @@ class CSV
 
     /**
      * Recursive putcsv.
-     *
-     * @param string | array
+     * @param mixed $array
+     * @param string $delimiter delimiters for csv file
      */
-    private function putDataRecursive($array)
+    private function putDataRecursive($array, $delimiter)
     {
-        \fputcsv($this->_file, $array);
+        \fputcsv($this->_file, $array, $delimiter);
         foreach ($array as $value) {
             if (is_array($value)) {
                 $this->putDataRecursive($value);
@@ -65,7 +65,7 @@ class CSV
     }
     /**
      * Write to CSV File.
-     *
+     * @throws \Exception
      * @param mixed  $text      input data
      * @param string $delimiter delimiters for csv file.
      */
@@ -74,11 +74,12 @@ class CSV
         if (!$this->isOpen('a+')) {
             throw new \Exception('Error in open file on write to end', 3);
         }
-        $this->putDataRecursive($text);
+        $this->putDataRecursive($text, $delimiter);
         \fclose($this->_file);
     }
     /**
      * Method for output csv data on stdout.
+     * @param array $data output data.
      */
     public function debugInfo(array $data)
     {
