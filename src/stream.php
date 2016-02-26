@@ -8,7 +8,7 @@ class wrapper
     public function stream_open($path, $mode, $options, &$opened_path)
     {
         $url = parse_url($path);
-        $text = file_get_contents($url['host']);
+        $text = file_get_contents($url['host'],$mode,$options,$opened_path);
         var_dump($text);
         return true;
     }

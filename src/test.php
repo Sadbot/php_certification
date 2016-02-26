@@ -1,6 +1,12 @@
 <?php
 namespace Cert;
 
+/**
+ * @param array $arr Array of digits, on which will be manipulate with callback
+ * @param \Closure $userFunc callback function
+ * @param int $offset
+ * @return int
+ */
 function reduce(array $arr, \Closure $userFunc, $offset = 0)
 {
 	$decorator = function ($userFunc)
