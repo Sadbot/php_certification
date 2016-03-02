@@ -5,11 +5,11 @@
 </head>
 <body class="c27">
 
-<div><a href="src/block0_arrays.php">Сравнение массивов</a></div>
-<div><a href="src/block0_float.php">FLOAT вычисления</a></div>
-<div><a href="src/block0_setexception.php">Set exception handler</a></div>
-<div><a href="src/block0_array_func.php">Передача массива после php5 всегда по ссылке</a></div>
-<div><a href="src/block0_const.php">Передача констант в функции</a></div>
+<div><a href="block0/block0_arrays.php">Сравнение массивов</a></div>
+<div><a href="block0/block0_float.php">FLOAT вычисления</a></div>
+<div><a href="block0/block0_setexception.php">Set exception handler</a></div>
+<div><a href="block0/block0_array_func.php">Передача массива после php5 всегда по ссылке</a></div>
+<div><a href="block0/block0_const.php">Передача констант в функции</a></div>
 
 
 <h1 class="c25 c3">
@@ -1713,7 +1713,7 @@
     </li>
 </ul>
 <p class="c5 c27">
-    <span class="c1"><a href="src/block6_attacks.php?test=1">Задача: реализовать скрипт в котором продемонстрировать
+    <span class="c1"><a href="block6/block6_attacks.php?test=1">Задача: реализовать скрипт в котором продемонстрировать
             атаку</a></span>
 </p>
 <h3 class="c17 c5">
@@ -1735,7 +1735,7 @@
     </li>
 </ul>
 <p class="c5 c27">
-    <span class="c1"><a href="src/block6_upload.php">Задача: реализовать форму загрузки файла</a></span>
+    <span class="c1"><a href="block6/block6_upload.php">Задача: реализовать форму загрузки файла</a></span>
 </p>
 
 <h3>Web: Программа обучения: PHP сертификация: 7 Databases</h3>
@@ -1794,53 +1794,52 @@
 
 
 <p>
-    Задача: Пример выборки в <a href="src/block7_mysqli_procedure.php">процедурном</a>и
-    <a href="src/block7_mysqli_object.php">объектом</a> стиле
+    Задача: Пример выборки в <a href="block7/block7_mysqli_procedure.php">процедурном</a>и
+    <a href="block7/block7_mysqli_object.php">объектом</a> стиле
 </p>
 
 <p>
-    <a href="src/block7_pdo_db.php">
+    <a href="block7/block7_pdo_db.php">
         Задача: показать работу с PDO на примере создания таблицы, записи данных, выборки данных, обработки ошибок
     </a>
 </p>
 
 <p>
     Задача: реализовать два параллельных скрипта для демонстрации уровней изоляции
-    (<a href="src/block7_transaction.php">первый</a> работает с транзакцией,
-    <a href="src/block7_transaction_konkurent.php">второй</a> читает/меняет задействованные данные).
+    (<a href="block7/block7_transaction.php">первый</a> работает с транзакцией,
+    <a href="block7/block7_transaction_konkurent.php">второй</a> читает/меняет задействованные данные).
 </p>
-
-
 
 
 <h3>Web: Программа обучения: PHP сертификация: 8 OOP</h3>
 
-<p><a href="src/block8_type_hinting.php">Typehinting</a></p>
+<p><a href="block8/block8_obj_refs.php">Объяснить как работают ссылки на объект, присвоение объекта разным переменным,
+        передача объекта в качестве аргумента, копирование объекта
+    </a></p>
 
-<p><a href="src/block8_late_bind.php">Late static bindings</a></p>
+<p><a href="block8/block8_type_hinting.php">Typehinting</a></p>
 
-<p><a href="src/">Задача: реализовать класс построчной обработка файла</a></p>
+<p><a href="block8/block8_late_bind.php">Late static bindings</a></p>
+
+<p><a href="block8/block8_iteration_file_read.php">Задача: реализовать класс построчной обработка файла</a></p>
 
 <p>
-    <a href="src/block8_late_static_singlton.php">
+    <a href="block8/block8_late_static_singlton.php">
         Задача: реализовать иерархию (наследование) классов-синглтонов
         (защищенный конструктор, объект получаем через метод getInstance)
-    </a>
-</p>
-
-<p>
-    <a href="src/block8_obj_refs.php">
-        Объяснить как работают ссылки на объект, присвоение объекта разным переменным, передача объекта в качестве
-        аргумента, копирование объекта
     </a>
 </p>
 
 
 <p>Задача: реализовать генератор простых чисел</p> src/block8_generators.php
 
-<p><a href="src/block8_reflection.php">Reflection Пример использования</a></p>
+<p><a href="block8/block8_reflection.php">Reflection Пример использования</a></p>
 
-<p><a href="src/block8_spl.php">Задача: сравнить скорость работы array и SPL array</a></p>
+<p><a href="block8/block8_spl.php">Задача: сравнить скорость работы array и SPL array</a></p>
+
+<h3>Web: Программа обучения: PHP сертификация: 10 XML</h3>
+
+<p><a href="block10/simple_xml.php">Задача: реализовать сериализацию (запись и чтение) объекта в xml</a></p>
 
 </body>
 </html>

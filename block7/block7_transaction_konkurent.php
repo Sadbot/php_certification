@@ -8,22 +8,30 @@ try {
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
 
-    echo "{$pid}: Begin read transacted field! \n";
+    echo "{$pid}: Begin transaction! \n";
+
+    $db->beginTransaction();
 
     $select = $db->query("SELECT * FROM `persons` WHERE id=10");
 
-    if (!$select) {
+    if (!$select && $db->inTransaction()) {
         echo "{$pid}: Cannot read transacted field! \n";
+        $db->rollBack();
     } else {
         echo "{$pid}: Read transacted field! \n";
     }
 
     $insert = $db->exec("INSERT INTO `persons`(`name`, `surname`, `gender`) VALUES ('Petruha','Petruhin',1)");
 
-    if (!$insert) {
+    if (!$insert && $db->inTransaction()) {
         echo "{$pid}: Cannot insert new field! \n";
     } else {
         echo "{$pid}: Insert new {$insert} field(s)! \n";
+    }
+
+    if ($db->inTransaction()) {
+        $db->commit();
+        echo "{$pid}: Commit transaction! \n";
     }
 
 } catch (PDOException $e) {

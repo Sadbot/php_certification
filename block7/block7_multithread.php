@@ -6,15 +6,14 @@ $child1 = pcntl_fork();
 if ($child1 != 0) {
     $child2 = pcntl_fork();
     if ($child2 != 0) {
-        pcntl_setpriority(10);
         echo "Parent\n";
     } else {
-        pcntl_setpriority(5);
         echo "Child-worker 2\n";
+        require 'block7_transaction.php';
     }
 } else {
-    pcntl_setpriority(5);
     echo "Child-worker 1\n";
+    require 'block7_transaction_konkurent.php';
 }
 
 // detach from the controlling terminal
@@ -30,7 +29,6 @@ $firstChildIsFree = true;
 $secondChildIsFree = true;
 // loop forever performing tasks
 while (1) {
-
     $changes = file_get_contents('test.txt');
     if (!empty($changes)) {
         $got2execution = false;
@@ -48,19 +46,15 @@ while (1) {
         }
         if ($got2execution) {
             //Задача выполненa, очищаем файл
-            file_put_contents('db.txt', '');
+            file_put_contents('test.txt', '');
         } else {
             echo "No free workers\n";
         }
     }
-    sleep(1);
-    // do something interesting here
-
 }
 
 function sig_handler($signo)
 {
-
     switch ($signo) {
         case SIGTERM:
             // handle shutdown tasks
@@ -72,5 +66,4 @@ function sig_handler($signo)
         default:
             // handle all other signals
     }
-
 }

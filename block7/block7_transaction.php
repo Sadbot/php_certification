@@ -12,10 +12,9 @@ try {
     echo "{$pid}: Begin Transaction! \n";
     $db->beginTransaction();
     $db->exec("UPDATE `persons` SET `name`='Transaction',`surname`='Transaction',`gender`=0 WHERE id>=10 AND id<=11");
+    echo "{$pid}: Update 10,11 fileds! \n";
     $db->exec("UPDATE `persons` SET `name`='Ivan',`surname`='Ivanov',`gender`=1 WHERE `id`=1");
-
-//    sleep(5);
-
+    echo "{$pid}: Update 1 field! \n";
     $db->commit();
     echo "{$pid}: Commit transaction! \n";
 } catch (PDOException $e) {
