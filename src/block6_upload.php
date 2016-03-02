@@ -25,11 +25,12 @@ class File
 
     public function upload()
     {
-        $destination_dir = __DIR__ . 'upload';
-        $filename = uniqid(rand(), true) . '.jpg';
+        $destination_dir = '/var/www/upload';
+        $filename = uniqid(rand()) . '.jpg';
 
         if (!is_dir($destination_dir)) {
-            throw new Exception('cannot open dest dir');
+            $oldmask = umask(0);
+            mkdir($destination_dir, 0744);
         }
 
         $check = getimagesize($this->_file['tmp_name']);
@@ -38,9 +39,9 @@ class File
             throw new Exception('your file not image!');
         }
 
-        $destination_file = $destination_dir . '/' . $filename;
+        $destination_file = $destination_dir . DIRECTORY_SEPARATOR . $filename;
 
-        echo $this->_file['tmp_name'], $destination_file;
+        echo 'file uploaded to ', $destination_file, "<br/>";
 
         if (!move_uploaded_file($this->_file['tmp_name'], $destination_file)) {
             throw new Exception('cannot move uploaded file!');
@@ -49,21 +50,15 @@ class File
     }
 }
 
-$file = $_FILES['image'];
+if (isset($_FILES['image'])) {
 
-var_dump($file);
-
-if (isset($file)) {
+    var_dump($_FILES['image']);
     $file = new File($_FILES['image']);
-
-    echo "begin upload file!\n";
 
     try {
         $res = $file->upload();
-        echo 'uploaded file path ', $res, "\n";
     } catch (Exception $e) {
         echo $e->getMessage();
     }
-
 }
 

@@ -13,8 +13,10 @@ function sqli($get = 1)
     $sql = "SELECT * from test where id={$get}";
     $stmt = $db->query($sql);
 
-    var_dump($stmt->fetchAll());
+    var_dump($stmt->fetchAll(PDO::FETCH_ASSOC));
 }
 
-sqli($_GET['test']);
+$test = isset($_GET['test']) ? $_GET['test'] : 1;
+
+sqli($test);
 
