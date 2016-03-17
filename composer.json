@@ -10,8 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-          "Cert\\": "src/",
-          "Application\\" : "app/"
+          "Cert\\": "src/"
         }
     }
 }

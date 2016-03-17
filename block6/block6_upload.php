@@ -25,7 +25,7 @@ class File
 
     public function upload()
     {
-        $destination_dir = '/var/www/upload';
+        $destination_dir = 'upload';
         $filename = uniqid(rand()) . '.jpg';
 
         if (!is_dir($destination_dir)) {

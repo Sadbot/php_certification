@@ -1,42 +1,41 @@
 <?php
+opcache_reset();
+
 $pid = getmypid();
 
 try {
     $db = new PDO('mysql:host=localhost;dbname=test;charset=UTF8;', 'root', '071293', [
-        PDO::ATTR_PERSISTENT => true,
+        // PDO::ATTR_PERSISTENT => true,
         PDO::ATTR_AUTOCOMMIT => false,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     ]);
+} catch (PDOException $e) {
+    echo "{$pid}: error db: ", $e->getMessage(), '<br>';
+}
 
-    echo "{$pid}: Begin transaction! \n";
+try {
+    echo "{$pid}: Begin Transaction! <br>";
+
+    $db->exec('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;');
 
     $db->beginTransaction();
 
-    $select = $db->query("SELECT * FROM `persons` WHERE id=10");
+    $stmt = $db->prepare("SELECT * FROM `persons` WHERE `name`='Cheruhin' AND `surname`='Sergey'");
+    $stmt->execute();
+    $person = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$select && $db->inTransaction()) {
-        echo "{$pid}: Cannot read transacted field! \n";
-        $db->rollBack();
-    } else {
-        echo "{$pid}: Read transacted field! \n";
-    }
+    var_dump($person);
 
-    $insert = $db->exec("INSERT INTO `persons`(`name`, `surname`, `gender`) VALUES ('Petruha','Petruhin',1)");
+    sleep(2);
 
-    if (!$insert && $db->inTransaction()) {
-        echo "{$pid}: Cannot insert new field! \n";
-    } else {
-        echo "{$pid}: Insert new {$insert} field(s)! \n";
-    }
+    $db->query("INSERT INTO `persons`(`name`, `surname`, `gender`, `enum`) VALUES ('Cheruhin','Sergey', 1, 1)");
 
-    if ($db->inTransaction()) {
-        $db->commit();
-        echo "{$pid}: Commit transaction! \n";
-    }
+    $db->commit();
 
+
+
+    echo "{$pid}: Commit update transaction! <br>";
 } catch (PDOException $e) {
-    echo "{$pid}: error db: ", $e->getMessage(), "\n";
-} catch (Exception $e) {
-    echo "{$pid}: Error: ", $e->getMessage(), "\n";
-
+    $db->rollBack();
+    echo "{$pid}: error transaction: ", $e->getMessage(), '<br>';
 }

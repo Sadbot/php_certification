@@ -4,21 +4,15 @@ trait Singleton
 {
     static private $instance;
 
-    private function __construct()
-    {
-    }  // Защищаем от создания через new Singleton
+    private function __construct() {}  // Защищаем от создания через new Singleton
 
-    private function __clone()
-    {
-    }  // Защищаем от создания через клонирование
+    private function __clone() {}  // Защищаем от создания через клонирование
 
-    private function __wakeup()
-    {
-    }  // Защищаем от создания через unserialize
+    private function __wakeup() {}  // Защищаем от создания через unserialize
 
     static public function getInstance()
     {
-        if (empty(static::$instance)) {
+        if (!(static::$instance instanceof self)) {
             static::$instance = new static();
         }
 
@@ -63,10 +57,6 @@ class Test extends Foo
         return $this->bar;
     }
 }
-
-/*
-Применение
-*/
 
 $foo = Foo::getInstance();
 $foo->incBar();

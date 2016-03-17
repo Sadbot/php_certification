@@ -1,77 +1,5 @@
 <?php
 
-
-class FileDataIterator implements \Iterator
-{
-    private $var = array();
-
-    public function __construct($array)
-    {
-        if (is_array($array)) {
-            $this->var = $array;
-        }
-    }
-
-    public function rewind()
-    {
-        reset($this->var);
-    }
-
-    public function current()
-    {
-        $var = current($this->var);
-        return $var;
-    }
-
-    public function key()
-    {
-        $var = key($this->var);
-        return $var;
-    }
-
-    public function next()
-    {
-        $var = next($this->var);
-        return $var;
-    }
-
-    public function valid()
-    {
-        $key = key($this->var);
-        $var = ($key !== NULL && $key !== FALSE);
-        return $var;
-    }
-
-    public function last()
-    {
-        return end(array_values($this->var));
-    }
-}
-
-class FileDataCollection implements \IteratorAggregate
-{
-    private $items = array();
-    private $count = 0;
-
-    // Реализация интерфейса IteratorAggregate
-    public function getIterator()
-    {
-        return new FileDataIterator($this->items);
-    }
-
-    public function getLast()
-    {
-        $iterator = new FileDataIterator($this->items);
-        return $iterator->last();
-    }
-
-    public function add($value)
-    {
-        $this->items[$this->count++] = $value;
-    }
-}
-
-
 class FileObject
 {
     const ERROR_LOG = 1;
@@ -89,14 +17,6 @@ class FileObject
     public function __construct($filename)
     {
         $this->_filename = $filename;
-
-        if (false !== strpos($filename, DIRECTORY_SEPARATOR)) {
-            $path = explode(DIRECTORY_SEPARATOR, $filename);
-            array_pop($path);
-            $fdir = implode(DIRECTORY_SEPARATOR, $path);
-            $this->mkdir($fdir);
-        }
-
         $this->_data = new FileDataCollection();
         $this->errors = [];
     }
@@ -104,14 +24,6 @@ class FileObject
     public function getErrors()
     {
         return $this->errors;
-    }
-
-    protected function mkdir($savePath)
-    {
-        if (!is_dir($savePath)) {
-            mkdir($savePath, 0777, true);
-        }
-        return true;
     }
 
     public function create()
@@ -166,7 +78,7 @@ class FileObject
         return false;
     }
 
-    public function rename($newName)
+    public function rename($newName, $rewrite_mode = 0)
     {
         $this->fopen('c');
 
@@ -222,18 +134,6 @@ class FileObject
             $this->uflock();
         }
         return $this;
-    }
-
-    public function finfo()
-    {
-        $this->fopen('r');
-
-        return [
-            'size' => filesize($this->_filename),
-            'permissions' => fileperms($this->_filename),
-            'owner' => fileowner($this->_filename),
-            'inode' => fileinode($this->_filename)
-        ];
     }
 
     protected function fopen($mode = 'r')
@@ -331,19 +231,3 @@ class FileObject
         }
     }
 }
-
-
-$book = new FileObject("book.txt");
-var_dump($book->gets(1));
-var_dump($book->gets(1));
-var_dump($book->gets(1));
-var_dump($book->gets(1));
-
-var_dump($book->getErrors());
-var_dump($book->finfo());
-
-$test = new FileObject("test/pob.txt");
-$test->create()->write('staeswtaeta srt ewt we');
-var_dump($test->read());
-
-var_dump($test->getErrors());

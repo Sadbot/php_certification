@@ -1781,10 +1781,11 @@
   ЗАПРОС:
 
   1 вариант
-  SELECT *
-  FROM orders AS o, client AS c, product AS p
-  WHERE o.id_client = c.id
-  AND o.id_product = p.id
+    SELECT CONCAT_WS(  "", c.name, c.surname ) AS whole_name, COUNT( o.id ) , SUM( p.price )
+    FROM orders AS o, client AS c, product AS p
+    WHERE o.id_client = c.id
+    AND o.id_product = p.id
+    GROUP BY whole_name
 
   2 вариант
   SELECT * FROM orders as o
@@ -1813,9 +1814,12 @@
 
 <h3>Web: Программа обучения: PHP сертификация: 8 OOP</h3>
 
-<p><a href="block8/block8_obj_refs.php">Объяснить как работают ссылки на объект, присвоение объекта разным переменным,
+<p>
+    <a href="block8/block8_obj_refs.php">
+        Объяснить как работают ссылки на объект, присвоение объекта разным переменным,
         передача объекта в качестве аргумента, копирование объекта
-    </a></p>
+    </a>
+</p>
 
 <p><a href="block8/block8_type_hinting.php">Typehinting</a></p>
 
@@ -1835,11 +1839,16 @@
 
 <p><a href="block8/block8_reflection.php">Reflection Пример использования</a></p>
 
+<p><a href="block8/block8_autoload.php">Задача: реализовать свой загрузчик</a></p>
+
 <p><a href="block8/block8_spl.php">Задача: сравнить скорость работы array и SPL array</a></p>
 
 <h3>Web: Программа обучения: PHP сертификация: 10 XML</h3>
 
 <p><a href="block10/simple_xml.php">Задача: реализовать сериализацию (запись и чтение) объекта в xml</a></p>
+<h3>Web: Программа обучения: PHP сертификация: 12 Web Features</h3>
 
+<p><a href="block12/upload_image.php">Задача: скачивание картинки средствами PHP</a></p>
+<p><a href="block12/sessions.php">Задача: Реализовать свой обработчик сессии</a></p>
 </body>
 </html>
